@@ -28,6 +28,35 @@ const BlogListScreen = ({navigation}) => {
     getBlogPosts();
   }, [page]);
 
+  const renderItem = ({item}) => {
+    return (
+      <TouchableOpacity
+        onPress={() => navigation.navigate('BlogDetailScreen', {item})}>
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginVertical: 10,
+            backgroundColor: '#495057',
+            borderRadius: 10,
+            borderColor: '#000',
+          }}>
+          <Text style={styles.titleText}>{item.title}</Text>
+
+          <Image source={{uri: item.banner}} style={styles.imageBanner} />
+
+          <Text style={styles.summaryText}>{item.summary}</Text>
+
+          <View style={styles.readingTimeContainer}>
+            <Text style={styles.readingTimeText}>
+              Reading Time {item.totalReadingTime} min
+            </Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <View style={{flex: 1, backgroundColor: '#343a40', paddingHorizontal: 10}}>
       {isLoading ? (
@@ -42,32 +71,7 @@ const BlogListScreen = ({navigation}) => {
           onRefresh={handleRefresh}
           onEndReached={handleLoadMore}
           onEndReachedThreshold={0.5}
-          renderItem={({item}) => (
-            <TouchableOpacity
-              onPress={() => navigation.navigate('BlogDetailScreen', {item})}>
-              <View
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  marginVertical: 10,
-                  backgroundColor: '#495057',
-                  borderRadius: 10,
-                  borderColor: '#000',
-                }}>
-                <Text style={styles.titleText}>{item.title}</Text>
-
-                <Image source={{uri: item.banner}} style={styles.imageBanner} />
-
-                <Text style={styles.summaryText}>{item.summary}</Text>
-
-                <View style={styles.readingTimeContainer}>
-                  <Text style={styles.readingTimeText}>
-                    Reading Time {item.totalReadingTime} min
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-          )}
+          renderItem={renderItem}
         />
       )}
     </View>
