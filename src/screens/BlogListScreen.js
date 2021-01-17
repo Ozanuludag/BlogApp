@@ -25,12 +25,11 @@ const BlogListScreen = ({navigation}) => {
   } = useContext(BlogContext);
 
   useEffect(() => {
-    console.log('UseEffect çalıştı');
     getBlogPosts();
   }, [page]);
 
   return (
-    <View style={{flex: 1, backgroundColor:'#343a40', paddingHorizontal:10}}>
+    <View style={{flex: 1, backgroundColor: '#343a40', paddingHorizontal: 10}}>
       {isLoading ? (
         <ActivityIndicator size="large" color="red" />
       ) : (
@@ -48,11 +47,10 @@ const BlogListScreen = ({navigation}) => {
               onPress={() => navigation.navigate('BlogDetailScreen', {item})}>
               <View
                 style={{
-                
                   justifyContent: 'center',
                   alignItems: 'center',
                   marginVertical: 10,
-                  backgroundColor:'#495057',
+                  backgroundColor: '#495057',
                   borderRadius: 10,
                   borderColor: '#000',
                 }}>
@@ -84,7 +82,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   titleText: {
-    color:'#f8f9fa',
+    color: '#f8f9fa',
     fontSize: 20,
     fontWeight: 'bold',
     marginVertical: 10,
@@ -104,7 +102,7 @@ const styles = StyleSheet.create({
   },
   summaryText: {
     fontSize: 16,
-    color:'#f8f9fa',
+    color: '#f8f9fa',
     marginTop: 10,
     width: (windowWidth * 8) / 10,
   },
@@ -112,7 +110,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   readingTimeText: {
-    color:'#fefae0',
+    color: '#fefae0',
     marginTop: 1,
     width: (windowWidth * 8) / 10,
   },

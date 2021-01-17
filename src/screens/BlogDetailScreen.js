@@ -4,14 +4,13 @@ import {WebView} from 'react-native-webview';
 
 const BlogDetailScreen = ({route}) => {
   const {item} = route.params;
- console.log(item.content);
   return (
     <View style={{flex: 1}}>
       <WebView
         scalesPageToFit={false}
         source={{html: item.content}}
         originWhitelist={['*']}
-        style={{flex: 1,margin:10}}
+        style={{flex: 1, margin: 10}}
       />
     </View>
   );

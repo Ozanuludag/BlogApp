@@ -24,7 +24,6 @@ export const BlogProvider = ({children}) => {
   const [refreshing, setRefreshing] = useReducer(blogReducer, false);
 
   const getBlogPosts = () => {
-    console.log('getBlogPosts çalıştı');
     fetch(
       `https://www.lenasoftware.com/api/v1/en/maestro/1?page=${page}&count=10`,
     )
@@ -34,21 +33,16 @@ export const BlogProvider = ({children}) => {
 
         var last_elementData =
           data.length === 0 ? data.length : data.length - 1;
-        console.log('last_elementJson: ' + last_elementJson);
-        console.log('last_elementData: ' + last_elementData);
 
         if (
           JSON.stringify(json.result[last_elementJson]) ===
           JSON.stringify(data[last_elementData])
         ) {
           setRefreshing({type: 'setRefreshing', payload: false});
-          console.log('Datalar aynı ekleme YAPILMADI!');
         } else {
           if (last_elementJson < 0) {
-            console.log('yeni veri yok');
             setRefreshing({type: 'setRefreshing', payload: false});
           } else {
-            console.log('Datalar aynı değil,yeni veri var, ekleme YAPILDI!');
             setData({type: 'setData', payload: [...data, ...json.result]});
             setRefreshing({type: 'setRefreshing', payload: false});
           }
